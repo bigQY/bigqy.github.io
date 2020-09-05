@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.inline内联函数## 1.inline关键字用来定义一个类的内联函数，引入它的主要原因是用它替代C中表达式形式的宏定义,解决一些频繁调用的小函数大量消耗栈空间（栈内存）的问题。 2.inline的使用是有所限制的，inline只适合涵数体内代码简单的涵数使用，不能包含复杂的结构控制语句例如while、switch，并且不能内联函数本身不能是直接递归函数（即，自己内部还调用自己的函数）。 3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 笔记（一）">
+<meta property="og:url" content="http://example.com/2020/09/05/cpp-note-1/index.html">
+<meta property="og:site_name" content="BigQY&#39;s Blog">
+<meta property="og:description" content="1.inline内联函数## 1.inline关键字用来定义一个类的内联函数，引入它的主要原因是用它替代C中表达式形式的宏定义,解决一些频繁调用的小函数大量消耗栈空间（栈内存）的问题。 2.inline的使用是有所限制的，inline只适合涵数体内代码简单的涵数使用，不能包含复杂的结构控制语句例如while、switch，并且不能内联函数本身不能是直接递归函数（即，自己内部还调用自己的函数）。 3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgur.com/CjYftqD.png">
+<meta property="og:image" content="https://i.imgur.com/70WWLCi.png">
+<meta property="og:image" content="https://i.imgur.com/OZzGtLc.png">
+<meta property="og:image" content="https://i.imgur.com/NWsQ5HK.png">
+<meta property="og:image" content="https://i.imgur.com/fSYQbDM.png">
+<meta property="og:image" content="https://i.imgur.com/XETl4GC.png">
+<meta property="og:image" content="https://i.imgur.com/zCKy5kk.png">
+<meta property="og:image" content="https://i.imgur.com/72ZMZHz.png">
+<meta property="og:image" content="https://i.imgur.com/UHP1Am5.png">
+<meta property="article:published_time" content="2020-09-05T09:43:15.316Z">
+<meta property="article:modified_time" content="2020-09-05T09:43:15.316Z">
+<meta property="article:author" content="BigQY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/CjYftqD.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>C++ 笔记（一）</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/09/05/hello-world/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/09/05/cpp-note-1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/09/05/cpp-note-1/&text=C++ 笔记（一）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/09/05/cpp-note-1/&is_video=false&description=C++ 笔记（一）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++ 笔记（一）&body=Check out this article: http://example.com/2020/09/05/cpp-note-1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/09/05/cpp-note-1/&name=C++ 笔记（一）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/09/05/cpp-note-1/&t=C++ 笔记（一）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-inline%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">1.inline内联函数##</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">2.构造函数初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.</span> <span class="toc-text">3.构造函数重载注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">4.常量成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%92%8C%E8%BF%94%E5%9B%9E%E5%80%BC%E4%BD%BF%E7%94%A8const%E5%BC%95%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">5.参数传递和返回值使用const引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%8F%8B%E5%85%83"><span class="toc-number">6.</span> <span class="toc-text">6.友元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BDthis%E6%8C%87%E9%92%88"><span class="toc-number">7.</span> <span class="toc-text">7.运算符重载this指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E8%A7%84%E8%8C%83%E5%8C%96%E4%BB%A3%E7%A0%81%E4%B8%80"><span class="toc-number">8.</span> <span class="toc-text">8.规范化代码一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#complex-h"><span class="toc-number">8.1.</span> <span class="toc-text">complex.h</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#complex-test-cpp"><span class="toc-number">8.2.</span> <span class="toc-text">complex_test.cpp</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        C++ 笔记（一）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BigQY's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-09-05T09:43:15.316Z" itemprop="datePublished">2020-09-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-inline内联函数"><a href="#1-inline内联函数" class="headerlink" title="1.inline内联函数##"></a>1.inline内联函数##</h2><p><img src="https://i.imgur.com/CjYftqD.png"></p>
+<p>1.inline关键字用来定义一个类的内联函数，引入它的主要原因是用它替代C中表达式形式的宏定义,解决一些频繁调用的小函数大量消耗栈空间（栈内存）的问题。</p>
+<p>2.inline的使用是有所限制的，inline只适合涵数体内代码简单的涵数使用，不能包含复杂的结构控制语句例如while、switch，并且不能内联函数本身不能是直接递归函数（即，自己内部还调用自己的函数）。</p>
+<p>3.inline函数仅仅是一个对编译器的建议，所以最后能否真正内联，看编译器的意思，它如果认为函数不复杂，能在调用点展开，就会真正内联，并不是说声明了内联就会内联，声明内联只是一个建议而已。</p>
+<p>4.定义在类中的成员函数缺省都是内联的，如果在类定义时就在类内给出函数定义，那当然最好。如果在类中未给出成员函数定义，而又想内联该函数的话，那在类外要加上inline，否则就认为不是内联的。</p>
+<h2 id="2-构造函数初始化"><a href="#2-构造函数初始化" class="headerlink" title="2.构造函数初始化"></a>2.构造函数初始化</h2><p><img src="https://i.imgur.com/70WWLCi.png"></p>
+<p>成员变量再构造函数中初始化中使用”:”函数方式性能比直接在构造函数中赋值要快，建议使用这种方式。</p>
+<h2 id="3-构造函数重载注意事项"><a href="#3-构造函数重载注意事项" class="headerlink" title="3.构造函数重载注意事项"></a>3.构造函数重载注意事项</h2><p><img src="https://i.imgur.com/OZzGtLc.png"></p>
+<p>黄色标注的构造函数定义将出现问题，如果该函数与上面构造函数同时出现，在无参初始化该类对象时将产生冲突，因为第一个构造函数已经有参数默认初始化列表了，定义该类对象时可以不加入参数，这就产生了冲突。</p>
+<h2 id="4-常量成员函数"><a href="#4-常量成员函数" class="headerlink" title="4.常量成员函数"></a>4.常量成员函数</h2><p><img src="https://i.imgur.com/NWsQ5HK.png"></p>
+<p>在一个类中，如果成员函数中没有改变成员函数操作（例如get操作），那么建议在该方法声明处加入const关键字，如果不加入const关键字，那么c++编译器将认为该函数可能会修改类的成员变量。这样做有个好处，可以看到上图的”？！”一图，使用者利用了const关键字定义并通过构造函数初始化了一个complex类，这个类将不能被修改，只能读取属性。当使用者调用complex的real()或者imag()方法时，如果这两个方法在定义处没有加入const关键字，那么将报错。</p>
+<h2 id="5-参数传递和返回值使用const引用"><a href="#5-参数传递和返回值使用const引用" class="headerlink" title="5.参数传递和返回值使用const引用"></a>5.参数传递和返回值使用const引用</h2><p><img src="https://i.imgur.com/fSYQbDM.png"></p>
+<p>函数参数传递，如果不需要改变参数值，建议使用const reference减小开销。</p>
+<p><img src="https://i.imgur.com/XETl4GC.png"></p>
+<p>返回值建议使用引用，但如果返回引用的是该函数的一个指向堆局部变量指针，例如*ptr，那么不能使用引用，因为该局部变量在函数调用后就以及销毁了，引用可以认为是给当前对象换了个别名，如果当前对象已经被销毁，那么该“别名”也就失去了意义，不存在了。</p>
+<p>当然，如下图所示，对于临时变量也不能返回引用：<br><img src="https://i.imgur.com/zCKy5kk.png"></p>
+<h2 id="6-友元"><a href="#6-友元" class="headerlink" title="6.友元"></a>6.友元</h2><p><img src="https://i.imgur.com/72ZMZHz.png"></p>
+<p>相同类的各个实例对象互为友元，可以通过彼此的内部方法调用传入参数的内部私有成员变量。</p>
+<h2 id="7-运算符重载this指针"><a href="#7-运算符重载this指针" class="headerlink" title="7.运算符重载this指针"></a>7.运算符重载this指针</h2><p><img src="https://i.imgur.com/UHP1Am5.png"></p>
+<p>如上图所所示，在运算符重载过程中隐藏了this指针，该指针编译器会处理，使用者不能显式声明。</p>
+<h2 id="8-规范化代码一"><a href="#8-规范化代码一" class="headerlink" title="8.规范化代码一"></a>8.规范化代码一</h2><h3 id="complex-h"><a href="#complex-h" class="headerlink" title="complex.h"></a>complex.h</h3><pre><code>#ifndef __MYCOMPLEX__
+#define __MYCOMPLEX__
+
+class complex; 
+complex&amp;
+  __doapl (complex* ths, const complex&amp; r);
+complex&amp;
+  __doami (complex* ths, const complex&amp; r);
+complex&amp;
+  __doaml (complex* ths, const complex&amp; r);
+
+
+class complex
+&#123;
+public:
+  complex (double r = 0, double i = 0): re (r), im (i) &#123; &#125;
+  complex&amp; operator += (const complex&amp;);
+  complex&amp; operator -= (const complex&amp;);
+  complex&amp; operator *= (const complex&amp;);
+  complex&amp; operator /= (const complex&amp;);
+  double real () const &#123; return re; &#125;
+  double imag () const &#123; return im; &#125;
+private:
+  double re, im;
+
+  friend complex&amp; __doapl (complex *, const complex&amp;);
+  friend complex&amp; __doami (complex *, const complex&amp;);
+  friend complex&amp; __doaml (complex *, const complex&amp;);
+&#125;;
+
+
+inline complex&amp;
+__doapl (complex* ths, const complex&amp; r)
+&#123;
+  ths-&gt;re += r.re;
+  ths-&gt;im += r.im;
+  return *ths;
+&#125;
+
+inline complex&amp;
+complex::operator += (const complex&amp; r)
+&#123;
+  return __doapl (this, r);
+&#125;
+
+inline complex&amp;
+__doami (complex* ths, const complex&amp; r)
+&#123;
+  ths-&gt;re -= r.re;
+  ths-&gt;im -= r.im;
+  return *ths;
+&#125;
+
+inline complex&amp;
+complex::operator -= (const complex&amp; r)
+&#123;
+  return __doami (this, r);
+&#125;
+
+inline complex&amp;
+__doaml (complex* ths, const complex&amp; r)
+&#123;
+  double f = ths-&gt;re * r.re - ths-&gt;im * r.im;
+  ths-&gt;im = ths-&gt;re * r.im + ths-&gt;im * r.re;
+  ths-&gt;re = f;
+  return *ths;
+&#125;
+
+inline complex&amp;
+complex::operator *= (const complex&amp; r)
+&#123;
+  return __doaml (this, r);
+&#125;
+
+inline double
+imag (const complex&amp; x)
+&#123;
+  return x.imag ();
+&#125;
+
+inline double
+real (const complex&amp; x)
+&#123;
+  return x.real ();
+&#125;
+
+inline complex
+operator + (const complex&amp; x, const complex&amp; y)
+&#123;
+  return complex (real (x) + real (y), imag (x) + imag (y));
+&#125;
+
+inline complex
+operator + (const complex&amp; x, double y)
+&#123;
+  return complex (real (x) + y, imag (x));
+&#125;
+
+inline complex
+operator + (double x, const complex&amp; y)
+&#123;
+  return complex (x + real (y), imag (y));
+&#125;
+
+inline complex
+operator - (const complex&amp; x, const complex&amp; y)
+&#123;
+  return complex (real (x) - real (y), imag (x) - imag (y));
+&#125;
+
+inline complex
+operator - (const complex&amp; x, double y)
+&#123;
+  return complex (real (x) - y, imag (x));
+&#125;
+
+inline complex
+operator - (double x, const complex&amp; y)
+&#123;
+  return complex (x - real (y), - imag (y));
+&#125;
+
+inline complex
+operator * (const complex&amp; x, const complex&amp; y)
+&#123;
+  return complex (real (x) * real (y) - imag (x) * imag (y),
+               real (x) * imag (y) + imag (x) * real (y));
+&#125;
+
+inline complex
+operator * (const complex&amp; x, double y)
+&#123;
+  return complex (real (x) * y, imag (x) * y);
+&#125;
+
+inline complex
+operator * (double x, const complex&amp; y)
+&#123;
+  return complex (x * real (y), x * imag (y));
+&#125;
+
+complex
+operator / (const complex&amp; x, double y)
+&#123;
+  return complex (real (x) / y, imag (x) / y);
+&#125;
+
+inline complex
+operator + (const complex&amp; x)
+&#123;
+  return x;
+&#125;
+
+inline complex
+operator - (const complex&amp; x)
+&#123;
+  return complex (-real (x), -imag (x));
+&#125;
+
+inline bool
+operator == (const complex&amp; x, const complex&amp; y)
+&#123;
+  return real (x) == real (y) &amp;&amp; imag (x) == imag (y);
+&#125;
+
+inline bool
+operator == (const complex&amp; x, double y)
+&#123;
+  return real (x) == y &amp;&amp; imag (x) == 0;
+&#125;
+
+inline bool
+operator == (double x, const complex&amp; y)
+&#123;
+  return x == real (y) &amp;&amp; imag (y) == 0;
+&#125;
+
+inline bool
+operator != (const complex&amp; x, const complex&amp; y)
+&#123;
+  return real (x) != real (y) || imag (x) != imag (y);
+&#125;
+
+inline bool
+operator != (const complex&amp; x, double y)
+&#123;
+  return real (x) != y || imag (x) != 0;
+&#125;
+
+inline bool
+operator != (double x, const complex&amp; y)
+&#123;
+  return x != real (y) || imag (y) != 0;
+&#125;
+
+#include &lt;cmath&gt;
+
+inline complex
+polar (double r, double t)
+&#123;
+  return complex (r * cos (t), r * sin (t));
+&#125;
+
+inline complex
+conj (const complex&amp; x) 
+&#123;
+  return complex (real (x), -imag (x));
+&#125;
+
+inline double
+norm (const complex&amp; x)
+&#123;
+  return real (x) * real (x) + imag (x) * imag (x);
+&#125;
+
+#endif   //__MYCOMPLEX__</code></pre>
+<h3 id="complex-test-cpp"><a href="#complex-test-cpp" class="headerlink" title="complex_test.cpp"></a>complex_test.cpp</h3><pre><code>#include &lt;iostream&gt;
+#include &quot;complex.h&quot;
+
+using namespace std;
+
+ostream&amp;
+operator &lt;&lt; (ostream&amp; os, const complex&amp; x)
+&#123;
+  return os &lt;&lt; &#39;(&#39; &lt;&lt; real (x) &lt;&lt; &#39;,&#39; &lt;&lt; imag (x) &lt;&lt; &#39;)&#39;;
+&#125;
+
+int main()
+&#123;
+  complex c1(2, 1);
+  complex c2(4, 0);
+
+  cout &lt;&lt; c1 &lt;&lt; endl;
+  cout &lt;&lt; c2 &lt;&lt; endl;
+
+  cout &lt;&lt; c1+c2 &lt;&lt; endl;
+  cout &lt;&lt; c1-c2 &lt;&lt; endl;
+  cout &lt;&lt; c1*c2 &lt;&lt; endl;
+  cout &lt;&lt; c1 / 2 &lt;&lt; endl;
+
+  cout &lt;&lt; conj(c1) &lt;&lt; endl;
+  cout &lt;&lt; norm(c1) &lt;&lt; endl;
+  cout &lt;&lt; polar(10,4) &lt;&lt; endl;
+
+  cout &lt;&lt; (c1 += c2) &lt;&lt; endl;
+
+  cout &lt;&lt; (c1 == c2) &lt;&lt; endl;
+  cout &lt;&lt; (c1 != c2) &lt;&lt; endl;
+  cout &lt;&lt; +c2 &lt;&lt; endl;
+  cout &lt;&lt; -c2 &lt;&lt; endl;
+
+  cout &lt;&lt; (c2 - 2) &lt;&lt; endl;
+  cout &lt;&lt; (5 + c2) &lt;&lt; endl;
+
+  return 0;
+&#125;</code></pre>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-inline%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">1.inline内联函数##</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">2.构造函数初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.</span> <span class="toc-text">3.构造函数重载注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">4.常量成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%92%8C%E8%BF%94%E5%9B%9E%E5%80%BC%E4%BD%BF%E7%94%A8const%E5%BC%95%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">5.参数传递和返回值使用const引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%8F%8B%E5%85%83"><span class="toc-number">6.</span> <span class="toc-text">6.友元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BDthis%E6%8C%87%E9%92%88"><span class="toc-number">7.</span> <span class="toc-text">7.运算符重载this指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E8%A7%84%E8%8C%83%E5%8C%96%E4%BB%A3%E7%A0%81%E4%B8%80"><span class="toc-number">8.</span> <span class="toc-text">8.规范化代码一</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#complex-h"><span class="toc-number">8.1.</span> <span class="toc-text">complex.h</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#complex-test-cpp"><span class="toc-number">8.2.</span> <span class="toc-text">complex_test.cpp</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/09/05/cpp-note-1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/09/05/cpp-note-1/&text=C++ 笔记（一）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/09/05/cpp-note-1/&is_video=false&description=C++ 笔记（一）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++ 笔记（一）&body=Check out this article: http://example.com/2020/09/05/cpp-note-1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/09/05/cpp-note-1/&title=C++ 笔记（一）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/09/05/cpp-note-1/&name=C++ 笔记（一）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/09/05/cpp-note-1/&t=C++ 笔记（一）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    BigQY
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    <!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.qyboy.github.io"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//mc.dabiantai.xyz:81/ananew/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '3']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</body>
+</html>
