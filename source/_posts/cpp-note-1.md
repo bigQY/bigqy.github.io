@@ -54,7 +54,7 @@ title: C++ 笔记（一）
 
 ## 8.规范化代码一 ##
 ### complex.h ###
-
+```cpp
 	#ifndef __MYCOMPLEX__
 	#define __MYCOMPLEX__
 	
@@ -272,8 +272,9 @@ title: C++ 笔记（一）
 	
 	#endif   //__MYCOMPLEX__
 
+```
 ### complex_test.cpp ###
-
+```cpp
 	#include <iostream>
 	#include "complex.h"
 	
@@ -314,3 +315,4 @@ title: C++ 笔记（一）
 	  
 	  return 0;
 	}
+```
