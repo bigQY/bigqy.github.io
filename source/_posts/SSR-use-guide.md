@@ -9,6 +9,9 @@ Windows版链接 [点我](https://github.com/shadowsocksrr/shadowsocksr-csharp/r
 
 MacOS版链接 [点我](https://github.com/qinyuhang/ShadowsocksX-NG-R/releases)
 
+备用下载地址：[点我](http://yun.unaux.com/?/SSR/)
+
+
 ios版暂时不提供
 
 下载方法：
@@ -18,7 +21,7 @@ ios版暂时不提供
 ![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/2.png)
 
 # 安装和配置客户端
-* Android版本：
+## Android版本：
 1. 打开主程序界面并选择“添加|升级”
 ![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/10.jpg)
 2. 向左滑动删除默认自带，然后添加订阅|地址，订阅地址在群里面，之后点击确认并升级
@@ -26,7 +29,7 @@ ios版暂时不提供
 3. 选择所需要的服务器
 ![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/12.jpg)
 
-* Windows版本：
+## Windows版本：
 1. 解压压缩包
 2. 如图选择和自己系统版本匹配的程序
 ![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/3.jpg)
@@ -39,7 +42,7 @@ ios版暂时不提供
 ![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/7.jpg)
 6. 在托盘区右键点击客户端图标，选择服务器->奇幻之旅->选择你想要的服务器
 
-* MacOS 版本：
+## MacOS 版本：
 1. 
 ![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/8.jpg)
 2. 选择编辑订阅
