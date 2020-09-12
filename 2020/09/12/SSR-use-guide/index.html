@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="下载客户端安卓版下载链接 点我 Windows版链接 点我 MacOS版链接 点我 ios版暂时不提供 下载方法：  打开链接，点击Assets 点击需要下载的文件，等待下载开始  安装和配置客户端 Android版本：   打开主程序界面并选择“添加|升级” 向左滑动删除默认自带，然后添加订阅|地址，订阅地址在群里面，之后点击确认并升级 选择所需要的服务器   Windows版本：   解压压缩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 笔记（一）">
+<meta property="og:url" content="http://example.com/2020/09/12/SSR-use-guide/index.html">
+<meta property="og:site_name" content="BigQY&#39;s Blog">
+<meta property="og:description" content="下载客户端安卓版下载链接 点我 Windows版链接 点我 MacOS版链接 点我 ios版暂时不提供 下载方法：  打开链接，点击Assets 点击需要下载的文件，等待下载开始  安装和配置客户端 Android版本：   打开主程序界面并选择“添加|升级” 向左滑动删除默认自带，然后添加订阅|地址，订阅地址在群里面，之后点击确认并升级 选择所需要的服务器   Windows版本：   解压压缩">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/10.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/11.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/12.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/5.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/6.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/7.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/8.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/9.jpg">
+<meta property="article:published_time" content="2020-09-12T05:31:48.943Z">
+<meta property="article:modified_time" content="2020-09-12T05:31:48.943Z">
+<meta property="article:author" content="BigQY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>C++ 笔记（一）</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/09/12/cpp-note-1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/09/12/SSR-use-guide/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/09/12/SSR-use-guide/&text=C++ 笔记（一）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/09/12/SSR-use-guide/&is_video=false&description=C++ 笔记（一）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++ 笔记（一）&body=Check out this article: http://example.com/2020/09/12/SSR-use-guide/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/09/12/SSR-use-guide/&name=C++ 笔记（一）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/09/12/SSR-use-guide/&t=C++ 笔记（一）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">下载客户端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.</span> <span class="toc-text">安装和配置客户端</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        C++ 笔记（一）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">BigQY's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-09-12T05:31:48.943Z" itemprop="datePublished">2020-09-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="下载客户端"><a href="#下载客户端" class="headerlink" title="下载客户端"></a>下载客户端</h1><p>安卓版下载链接 <a target="_blank" rel="noopener" href="https://github.com/shadowsocksrr/shadowsocksr-android/releases">点我</a></p>
+<p>Windows版链接 <a target="_blank" rel="noopener" href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases">点我</a></p>
+<p>MacOS版链接 <a target="_blank" rel="noopener" href="https://github.com/qinyuhang/ShadowsocksX-NG-R/releases">点我</a></p>
+<p>ios版暂时不提供</p>
+<p>下载方法：</p>
+<ul>
+<li>打开链接，点击Assets<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/1.png"></li>
+<li>点击需要下载的文件，等待下载开始<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/2.png"></li>
+</ul>
+<h1 id="安装和配置客户端"><a href="#安装和配置客户端" class="headerlink" title="安装和配置客户端"></a>安装和配置客户端</h1><ul>
+<li>Android版本：</li>
+</ul>
+<ol>
+<li>打开主程序界面并选择“添加|升级”<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/10.jpg"></li>
+<li>向左滑动删除默认自带，然后添加订阅|地址，订阅地址在群里面，之后点击确认并升级<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/11.jpg"></li>
+<li>选择所需要的服务器<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/12.jpg"></li>
+</ol>
+<ul>
+<li>Windows版本：</li>
+</ul>
+<ol>
+<li>解压压缩包</li>
+<li>如图选择和自己系统版本匹配的程序<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/3.jpg"></li>
+<li>在托盘区右键点击客户端图标，选择如图的项目<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/4.jpg"></li>
+<li>点击ADD，之后把订阅链接复制到这里<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/5.jpg"><br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/6.jpg"></li>
+<li>在托盘区右键点击客户端图标，选择如图的项目来更新订阅<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/7.jpg"></li>
+<li>在托盘区右键点击客户端图标，选择服务器-&gt;奇幻之旅-&gt;选择你想要的服务器</li>
+</ol>
+<ul>
+<li>MacOS 版本：</li>
+</ul>
+<ol>
+<li><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/8.jpg"></li>
+<li>选择编辑订阅<br><img src="https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/9.jpg"></li>
+<li>参照Windows版本</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">下载客户端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.</span> <span class="toc-text">安装和配置客户端</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/09/12/SSR-use-guide/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/09/12/SSR-use-guide/&text=C++ 笔记（一）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/09/12/SSR-use-guide/&is_video=false&description=C++ 笔记（一）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=C++ 笔记（一）&body=Check out this article: http://example.com/2020/09/12/SSR-use-guide/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/09/12/SSR-use-guide/&title=C++ 笔记（一）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/09/12/SSR-use-guide/&name=C++ 笔记（一）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/09/12/SSR-use-guide/&t=C++ 笔记（一）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    BigQY
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    <!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setCookieDomain", "*.qyboy.github.io"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//mc.dabiantai.xyz:81/ananew/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '3']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+</body>
+</html>
