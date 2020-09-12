@@ -20,7 +20,11 @@ ios版暂时不提供
 # 安装和配置客户端
 * Android版本：
 1. 打开主程序界面并选择“添加|升级”
-2. 
+![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/10.jpg)
+2. 向左滑动删除默认自带，然后添加订阅|地址，订阅地址在群里面，之后点击确认并升级
+![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/11.jpg)
+3. 选择所需要的服务器
+![](https://raw.githubusercontent.com/QYboy/qyboy.github.io/myblog/source/_img/12.jpg)
 
 * Windows版本：
 1. 解压压缩包
